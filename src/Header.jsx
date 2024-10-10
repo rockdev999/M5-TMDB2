@@ -2,9 +2,10 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "./assets/logo.png";
+import { Link } from "react-router-dom";
 function Header() {
   return (
-    <Navbar collapseOnSelect expand="lg" className="navbar">
+    <Navbar fixed="top" collapseOnSelect expand="lg" className="navbar">
       <Container fluid className="container-navbar">
         <Navbar.Brand href="#home" className="container-logo">
           <img className="logo" src={logo} alt="" />
@@ -15,15 +16,15 @@ function Header() {
         />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto content-btn">
-            <Nav.Link className="btn" href="#pricing">
-              Popular
-            </Nav.Link>
-            <Nav.Link className="btn" href="#features">
+            <Link to={"/"} className="btn">
               Home
-            </Nav.Link>
-            <Nav.Link className="btn" href="#pricing">
+            </Link>
+            <Link to={"popular"} className="btn">
+              Popular
+            </Link>
+            <Link to={"best-movies"} className="btn" href="#pricing">
               Best Movies
-            </Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

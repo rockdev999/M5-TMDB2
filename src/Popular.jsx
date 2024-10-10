@@ -9,11 +9,11 @@ import {
   Row,
   Modal,
 } from "react-bootstrap";
-function Body() {
+function Popular() {
   const apiKey = "1660f18f92a1423bfff7c2b1ed2afc2b";
-  const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`;
+  const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
 
-  const [peliculas, setPeliculas] = useState(null);
+  const [populares, setPopulares] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedDetail, setSelectedDetail] = useState(null);
 
@@ -22,14 +22,14 @@ function Body() {
     axios
       .get(url)
       .then((response) => {
-        setPeliculas(response.data.results);
+        setPopulares(response.data.results);
       })
       .catch((error) => console.error(error));
   }, [url]);
   // console.log(peliculas);
   // Función para mostrar el modal
-  const mostrarModal = (pelicula) => {
-    setSelectedDetail(pelicula); // Guardamos la película seleccionada
+  const mostrarModal = (popular) => {
+    setSelectedDetail(popular); // Guardamos la película seleccionada
     setShowModal(true); // Mostramos el modal
   };
 
@@ -52,45 +52,45 @@ function Body() {
   // console.log(gener);
   return (
     <>
-      {peliculas ? (
+      {populares ? (
         <Container className="container">
           <Row className="row">
-            {peliculas.map((pelicula) => (
-              <Col key={pelicula.id} className="mb-4 col" xs={6} md={4} lg={3}>
+            {populares.map((popular) => (
+              <Col key={popular.id} className="mb-4 col" xs={6} md={4} lg={3}>
                 <Card className="card">
                   <div className="content-img">
                     <Card.Img
                       className="img"
                       variant="top"
-                      src={`https://image.tmdb.org/t/p/original/${pelicula.poster_path}`}
+                      src={`https://image.tmdb.org/t/p/original/${popular.poster_path}`}
                     />
                   </div>
 
                   <Card.Body>
                     <Card.Title className="title">
-                      {pelicula.original_title.toUpperCase()}
+                      {popular.original_title.toUpperCase()}
                     </Card.Title>
                     <Card.Text className="m-0">
-                      <strong>Release date: </strong> {pelicula.release_date}
+                      <strong>Release date: </strong> {popular.release_date}
                     </Card.Text>
                     <Card.Text className="m-0">
                       <strong>Rating: </strong>
-                      {pelicula.vote_average.toFixed(1)}
+                      {popular.vote_average.toFixed(1)}
                     </Card.Text>
                     <div className="content-description">
                       <Card.Text className="m-0 description">
                         <strong className="name">
                           Synopsis <br />
                         </strong>
-                        {pelicula.overview.length > 50
-                          ? `${pelicula.overview.substring(0, 95)} ...`
-                          : pelicula.overview}
+                        {popular.overview.length > 50
+                          ? `${popular.overview.substring(0, 95)} ...`
+                          : popular.overview}
                       </Card.Text>
                     </div>
                     <div className="cont-btn">
                       <Button
                         className="btn-more"
-                        onClick={() => mostrarModal(pelicula)}
+                        onClick={() => mostrarModal(popular)}
                       >
                         Ver más
                       </Button>
@@ -171,4 +171,4 @@ function Body() {
   );
 }
 
-export default Body;
+export default Popular;

@@ -1,8 +1,11 @@
 .navbar {
+  position: fixed;
   background-color: #1f1f1f;
 }
 .container-navbar {
   margin: 5px 10px 5px 10px;
+  /* display: flex; */
+  /* justify-content: space-around; */
 }
 .container-logo {
   width: 6rem;
@@ -33,7 +36,11 @@
 }
 .btn:hover {
   background-color: #ffd700;
-  color: black;
+  /* color: black; */
+}
+.btn:active {
+  background-color: #ffd700;
+  color: white;
 }
 .toggle {
   background-color: #b3b3b3;
